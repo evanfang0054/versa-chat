@@ -1,0 +1,8 @@
+*.yaml
+*.yml
+*.md
+*.json
+*.lock
+*.lockb
+*.lockb.yaml
+*.lockb.yml

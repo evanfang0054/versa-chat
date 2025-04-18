@@ -1,0 +1,60 @@
+{
+  "name": "versa-chat",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Versa Chat 聊天模板",
+  "packageManager": "pnpm@8.15.4",
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "prepare": "husky install",
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "clean": "turbo run clean",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "turbo run build --filter=!docs && changeset publish"
+  },
+  "keywords": [
+    "react",
+    "vite",
+    "monorepo",
+    "typescript",
+    "versa-chat"
+  ],
+  "author": "evanfang",
+  "license": "MIT",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "lint-staged": {
+    "*.{md,json,js,ts,jsx,tsx}": [
+      "prettier --write --no-error-on-unmatched-pattern"
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix"
+    ]
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.1",
+    "@commitlint/cli": "17.1.2",
+    "@efdev/config-commitlint": "^1.0.1",
+    "@efdev/config-stylelint": "^1.0.1",
+    "@types/node": "^20.11.19",
+    "@typescript-eslint/eslint-plugin": "^7.0.1",
+    "@typescript-eslint/parser": "^7.0.1",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.2.5",
+    "stylelint": "^16.18.0",
+    "turbo": "^2.4.4",
+    "typescript": "^4.9.0"
+  }
+}
