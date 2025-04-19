@@ -33,7 +33,7 @@
     "*.{md,json,js,ts,jsx,tsx}": [
       "prettier --write --no-error-on-unmatched-pattern"
     ],
-    "packages/**/*.{js,jsx,ts,tsx}": [
+    "{apps,packages}/**/*.{js,jsx,ts,tsx}": [
       "eslint --fix"
     ]
   },
