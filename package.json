@@ -25,6 +25,9 @@
   ],
   "author": "evanfang",
   "license": "MIT",
+  "engines": {
+    "node": ">=18.20.0"
+  },
   "workspaces": [
     "apps/*",
     "packages/*"
