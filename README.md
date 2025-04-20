@@ -26,7 +26,6 @@ Versa Chat聊天模板
 ├── packages                 # 公共包目录，存放共享的模块
 │   ├── config              # 配置相关的包（如：eslint, prettier 等配置）
 │   ├── hooks               # React Hooks 相关的公共逻辑
-│   ├── types               # TypeScript 类型定义包
 │   ├── ui                  # UI 组件库
 │   └── utils              # 通用工具函数包
 ├── pnpm-lock.yaml         # pnpm 依赖锁定文件
@@ -108,10 +107,6 @@ pnpm release
 ### packages/utils
 
 工具函数库，包含业务通用工具函数。
-
-### packages/types
-
-类型定义库，包含业务通用类型定义。
 
 ### packages/config
 
