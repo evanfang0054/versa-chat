@@ -1,5 +1,5 @@
 {
-  "$schema": "https://turbo.build/schema.json",
+  "$schema": "https://turborepo.com/schema.json",
   "globalEnv": ["NODE_ENV", "DEPLOY_ENV", "API_BASE_URL"],
   "globalDependencies": ["**/.env.*local", ".env", "tsconfig.json"],
   "tasks": {
@@ -12,7 +12,7 @@
         "packages/*/dist/**"
       ],
       "env": ["DEPLOY_ENV", "API_BASE_URL"],
-      "cache": true
+      "cache": false
     },
     "test": {
       "dependsOn": ["^build"],
@@ -23,15 +23,14 @@
       "outputs": []
     },
     "dev": {
+      "dependsOn": ["^build"],
       "cache": false,
-      "persistent": true
+      "persistent": true,
+      "outputs": [
+        "packages/*/dist/**"
+      ]
     },
     "clean": {
-      "cache": false
-    },
-    "deploy": {
-      "dependsOn": ["build", "test", "lint"],
-      "outputs": [],
       "cache": false
     }
   }
