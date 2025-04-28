@@ -7,7 +7,7 @@ Versa Chat聊天模板
 - 📦 Monorepo - 使用 pnpm workspace 和 Turborepo 管理
 - 🚀 构建工具 - Vite
 - 🎨 UI 框架 - Ant Design Mobile
-- 📱 移动端适配 - amfe-flexible + postcss-px-to-viewport
+- 📱 移动端适配 - amfe-flexible + postcss-pxtorem
 - 🌐 国际化 - i18next + react-i18next
 - 🎯 状态管理 - Zustand
 - 🎨 样式方案 - TailwindCSS
