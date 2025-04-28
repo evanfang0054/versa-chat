@@ -2,7 +2,7 @@
   "name": "versa-chat",
   "private": true,
   "version": "1.0.0",
-  "description": "Versa Chat 聊天模板",
+  "description": "Versa Chat Ai聊天 支持多种消息类型插件(卡片、iframe、文本、图片、音频等等)接入、monorepo架构体系",
   "packageManager": "pnpm@9.4.0",
   "scripts": {
     "preinstall": "npx only-allow pnpm",

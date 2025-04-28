@@ -1,6 +1,6 @@
 # Versa Chat
 
-Versa Chat聊天模板
+Versa Chat Ai聊天 支持多种消息类型插件(卡片、iframe、文本、图片、音频等等)接入、monorepo架构体系
 
 ## 技术栈
 
