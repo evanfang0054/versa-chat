@@ -1,0 +1,11 @@
+build/
+coverage/
+dist/
+es/
+lib/
+node_modules/
+**/\*.min.js
+**/_-min.js
+\*\*/_.bundle.js
+tailwind.config.js
+tsconfig.tsbuildinfo
