@@ -1,0 +1,24 @@
+{
+  "name": "@versa-chat/hooks",
+  "version": "0.0.1",
+  "private": true,
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist && rm -rf tsconfig.tsbuildinfo",
+    "dev": "tsc --build --watch",
+    "lint": "eslint .",
+    "build": "tsc --build"
+  },
+  "dependencies": {
+    "@versa-chat/utils": "workspace:*",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.55",
+    "typescript": "^4.9.0"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0"
+  }
+}
