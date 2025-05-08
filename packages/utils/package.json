@@ -23,7 +23,7 @@
     "dist"
   ],
   "scripts": {
-    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist && rm -rf tsconfig.tsbuildinfo",
+    "clean": "rimraf .turbo && rimraf node_modules && rimraf dist && rimraf tsconfig.tsbuildinfo",
     "lint": "eslint src --ext .ts,.tsx",
     "build": "tsc --build",
     "dev": "tsc --build --watch",
