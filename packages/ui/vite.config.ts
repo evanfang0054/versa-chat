@@ -8,7 +8,7 @@ export default defineConfig({
     react(),
     dts({
       include: ['src'],
-      outDir: 'dist',
+      outDir: 'dist/es',
     }),
   ],
   resolve: {
@@ -17,6 +17,10 @@ export default defineConfig({
     },
   },
   css: {
+    modules: {
+      localsConvention: 'camelCaseOnly',
+      generateScopedName: '[name]__[local]__[hash:base64:5]',
+    },
     preprocessorOptions: {
       less: {
         javascriptEnabled: true,
@@ -27,22 +31,32 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'VersaChatUI',
-      formats: ['es', 'umd'],
-      fileName: (format) => `index.${format}.js`,
+      formats: ['es', 'cjs', 'umd'],
+      fileName: (format) => `${format}/index.${format}.js`,
     },
     rollupOptions: {
       external: ['react', 'react-dom', 'antd-mobile', '@versa-chat/utils', '@versa-chat/hooks'],
-      output: {
-        globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM',
-          'antd-mobile': 'antdMobile',
-          '@versa-chat/utils': 'VersaUtils',
-          '@versa-chat/hooks': 'VersaChatHooks',
+      output: [
+        {
+          format: 'es',
+          preserveModules: true,
+          preserveModulesRoot: 'src',
+          dir: 'dist/es',
+          entryFileNames: '[name].js',
         },
-      },
+        {
+          format: 'umd',
+          dir: 'dist',
+          name: 'VersaChatUI',
+          globals: {
+            react: 'React',
+            'react-dom': 'ReactDOM',
+            'antd-mobile': 'antdMobile',
+            '@versa-chat/utils': 'VersaUtils',
+            '@versa-chat/hooks': 'VersaChatHooks',
+          },
+        },
+      ],
     },
-    outDir: 'dist',
-    emptyOutDir: true,
   },
 });
