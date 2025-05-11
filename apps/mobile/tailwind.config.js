@@ -150,6 +150,7 @@ export default {
     }),
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
+    require('tailwindcss-animate'),
 
     // 添加Less变量支持
     plugin(function ({ addBase, theme }) {

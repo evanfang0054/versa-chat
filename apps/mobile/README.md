@@ -143,6 +143,25 @@ import { changeLanguage } from '../utils/i18n';
 changeLanguage('en');
 ```
 
+### 环境文件
+根目录下创建.env文件
+``` bash
+# 应用名称
+VITE_APP_NAME=
+
+# 端口
+VITE_APP_PORT=
+
+# API 地址
+VITE_API_URL=
+
+# API 密钥
+VITE_API_KEY=
+
+# 模型
+VITE_MODEL=
+```
+
 ## 📝 开发进度
 
 ### 已完成功能
