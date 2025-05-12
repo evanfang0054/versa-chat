@@ -1,5 +1,5 @@
 {
-  "name": "@versa-chat/hooks",
+  "name": "@versa-chat/config",
   "version": "0.0.1",
   "private": true,
   "main": "./src/index.ts",
@@ -7,18 +7,11 @@
   "scripts": {
     "clean": "rimraf .turbo && rimraf node_modules && rimraf dist && rimraf tsconfig.tsbuildinfo",
     "dev": "tsc --build --watch",
-    "lint": "eslint .",
     "build": "tsc --build"
   },
   "dependencies": {
-    "@versa-chat/utils": "workspace:*",
-    "react": "^18.2.0"
   },
   "devDependencies": {
-    "@types/react": "^18.2.55",
     "typescript": "^4.9.0"
-  },
-  "peerDependencies": {
-    "react": "^18.2.0"
   }
 }
