@@ -2,13 +2,21 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import dts from 'vite-plugin-dts';
 import { resolve } from 'path';
+import svgLoader from 'vite-svg-loader';
 
 export default defineConfig({
   plugins: [
     react(),
+    svgLoader(),
     dts({
-      include: ['src'],
       outDir: 'dist/es',
+      include: ['src'],
+      exclude: ['**/__tests__/**'],
+    }),
+    dts({
+      outDir: 'dist/cjs',
+      include: ['src'],
+      exclude: ['**/__tests__/**'],
     }),
   ],
   resolve: {
@@ -37,6 +45,13 @@ export default defineConfig({
     rollupOptions: {
       external: ['react', 'react-dom', 'antd-mobile', '@versa-chat/utils', '@versa-chat/hooks'],
       output: [
+        {
+          format: 'cjs',
+          preserveModules: true,
+          preserveModulesRoot: 'src',
+          dir: 'dist/cjs',
+          entryFileNames: '[name].js',
+        },
         {
           format: 'es',
           preserveModules: true,
