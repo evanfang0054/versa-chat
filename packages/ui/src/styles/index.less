@@ -1,0 +1,55 @@
+@import './variables.less';
+
+// 全局样式重置
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: @font-family;
+  font-size: @font-size-base;
+  line-height: 1.5;
+  color: #333;
+}
+
+// 通用样式类
+.versa-ui-flex {
+  display: flex;
+}
+
+.versa-ui-flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.versa-ui-flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// 间距工具类
+.versa-ui-mt-xs { margin-top: @spacing-xs; }
+.versa-ui-mt-sm { margin-top: @spacing-sm; }
+.versa-ui-mt-md { margin-top: @spacing-md; }
+.versa-ui-mt-lg { margin-top: @spacing-lg; }
+.versa-ui-mt-xl { margin-top: @spacing-xl; }
+
+.versa-ui-mb-xs { margin-bottom: @spacing-xs; }
+.versa-ui-mb-sm { margin-bottom: @spacing-sm; }
+.versa-ui-mb-md { margin-bottom: @spacing-md; }
+.versa-ui-mb-lg { margin-bottom: @spacing-lg; }
+.versa-ui-mb-xl { margin-bottom: @spacing-xl; }
+
+// 文本样式工具类
+.versa-ui-text-center { text-align: center; }
+.versa-ui-text-left { text-align: left; }
+.versa-ui-text-right { text-align: right; }
+
+.versa-ui-text-primary { color: @primary-color; }
+.versa-ui-text-sm { font-size: @font-size-sm; }
+.versa-ui-text-base { font-size: @font-size-base; }
+.versa-ui-text-lg { font-size: @font-size-lg; } 
