@@ -14,9 +14,9 @@
 
 ### 1. 创建请求实例
 ```typescript
-import { createRequest } from '@versa-chat/utils/request';
+import { createRequest } from '@versa-chat/utils';
 
-const request = createRequest({
+const http = createRequest({
   baseURL: 'https://api.example.com',
   timeout: 10000,
   toastHandler: {
@@ -29,12 +29,12 @@ const request = createRequest({
 ### 2. 发起请求
 ```typescript
 // GET 请求
-request.get('/users', { page: 1, size: 10 })
+http.get('/users', { page: 1, size: 10 })
   .then(data => console.log(data))
   .catch(err => console.error(err));
 
 // POST 请求  
-request.post('/users', { name: 'John' })
+http.post('/users', { name: 'John' })
   .then(data => console.log(data));
 ```
 
@@ -56,10 +56,10 @@ request.post('/users', { name: 'John' })
 内置了完整的错误分类和处理机制：
 
 ```typescript
-import { ErrorType } from '@versa-chat/utils/request';
+import { ErrorType } from '@versa-chat/utils';
 
 try {
-  await request.get('/users');
+  await http.get('/users');
 } catch (err) {
   if (err.type === ErrorType.AUTH) {
     // 处理未授权错误
@@ -76,19 +76,19 @@ try {
 ```typescript
 // 发起可取消的请求
 const reqId = 'get_users';
-request.get('/users', {}, { requestId: reqId });
+http.get('/users', {}, { requestId: reqId });
 
 // 取消特定请求
-request.cancel(reqId);
+http.cancel(reqId);
 
 // 取消所有请求
-request.cancelAll();
+http.cancelAll();
 ```
 
 #### 2. 文件上传
 ```typescript
 const file = document.querySelector('input[type="file"]').files[0];
-request.upload('/upload', file, {
+http.upload('/upload', file, {
   onUploadProgress: (progress) => {
     console.log(`上传进度: ${progress}%`);
   }
@@ -97,7 +97,7 @@ request.upload('/upload', file, {
 
 #### 3. 文件下载
 ```typescript
-request.download('/export', { type: 'excel' })
+http.download('/export', { type: 'excel' })
   .then(blob => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -146,7 +146,7 @@ interface User {
 }
 
 // 带类型的请求
-request.get<User[]>('/users')
+http.get<User[]>('/users')
   .then(users => {
     // users 自动推断为 User[] 类型
   });
@@ -180,7 +180,7 @@ request.get<User[]>('/users')
 开发环境下可通过 `useMock` 配置启用 Mock：
 
 ```typescript
-request.get('/users', {}, { useMock: true });
+http.get('/users', {}, { useMock: true });
 ```
 
 需在 `public/mock` 目录下创建对应的 JSON 文件，如：
@@ -190,7 +190,7 @@ request.get('/users', {}, { useMock: true });
 内置了日志系统，开发环境下默认输出 DEBUG 级别日志：
 
 ```typescript
-import { Logger } from '@versa-chat/utils/request';
+import { Logger } from '@versa-chat/utils';
 
 // 设置日志级别
 Logger.setLevel(Logger.LogLevel.DEBUG);
