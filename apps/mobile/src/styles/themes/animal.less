@@ -1,0 +1,353 @@
+html[data-theme='light'][data-theme-pack='animal'] {
+  /* ===== 品牌色系 ===== */
+  --adm-color-primary: #F4A261;
+  --adm-color-primary-light: #F9BC8F;
+  --adm-color-primary-lighter: #FDD6B9;
+  --adm-color-primary-dark: #E67E22;
+  
+  /* ===== 功能色系 ===== */
+  --adm-color-success: #2A9D8F;
+  --adm-color-success-light: #3EBFAF;
+  --adm-color-success-lighter: #75D1C7;
+  --adm-color-success-dark: #1D7268;
+  
+  --adm-color-warning: #E9C46A;
+  --adm-color-warning-light: #ECD28A;
+  --adm-color-warning-lighter: #F4E6B5;
+  --adm-color-warning-dark: #DEB53A;
+  
+  --adm-color-danger: #E76F51;
+  --adm-color-danger-light: #EB8D74;
+  --adm-color-danger-lighter: #F5BEB0;
+  --adm-color-danger-dark: #D05A3B;
+  
+  --adm-color-info: #4D908E;
+  --adm-color-info-light: #68B2B0;
+  --adm-color-info-lighter: #9CD1D0;
+  --adm-color-info-dark: #407775;
+  
+  /* ===== 辅助色系 ===== */
+  --adm-color-yellow: #FFD166;
+  --adm-color-orange: #E76F51;
+  --adm-color-wathet: #A8DADC;
+  
+  /* ===== 中性色系 ===== */
+  --adm-color-white: #FFFFFF;
+  --adm-color-black: #000000;
+  
+  /* 文字颜色 */
+  --adm-color-text: #264653;
+  --adm-color-text-secondary: #457B9D;
+  --adm-color-text-tertiary: #6D8A96;
+  --adm-color-text-quaternary: #A8B9C0;
+  --adm-color-weak: #6D8A96;
+  --adm-color-light: #6D8A96;
+  
+  /* 背景颜色 */
+  --adm-color-background: #FDFAF6;
+  --adm-color-box: #F4F1EA;
+  --adm-color-box-light: #FDFAF6;
+  --adm-color-fill: #F4F1EA;
+  --adm-color-fill-light: #FDFAF6;
+  --adm-color-fill-content: #F4F1EA;
+  --adm-color-highground: #FFFFFF;
+  
+  /* 边框颜色 */
+  --adm-color-border: #E9E6DF;
+  --adm-color-border-dark: #D3D0C9;
+  --adm-color-border-light: #F4F1EA;
+  
+  /* 遮罩颜色 */
+  --adm-color-mask: rgba(38, 70, 83, 0.5);
+  
+  /* ===== 高亮与固定色 ===== */
+  --adm-color-highlight: var(--adm-color-danger);
+  --adm-color-text-light-solid: var(--adm-color-white);
+  --adm-color-text-dark-solid: #264653;
+  
+  /* ===== 页面基础颜色 ===== */
+  --color-bg-primary: #FDFAF6;
+  --color-bg-secondary: #F4F1EA;
+  --color-bg-tertiary: #E9E6DF;
+  --color-text-primary: #264653;
+  --color-text-secondary: #457B9D;
+  --color-text-tertiary: #6D8A96;
+  --color-border: #E9E6DF;
+  --color-border-light: #F4F1EA;
+  --color-card-bg: #FFFFFF;
+  --color-card-shadow: rgba(0, 0, 0, 0.08);
+
+  /* ===== 组件特定颜色 ===== */
+  /* 按钮 Button */
+  --adm-button-text-color: var(--adm-color-text);
+  --adm-button-background-color: var(--adm-color-background);
+  --adm-button-border-color: var(--adm-color-border);
+  --adm-button-primary-text-color: var(--adm-color-white);
+  --adm-button-primary-background-color: var(--adm-color-primary);
+  --adm-button-primary-border-color: var(--adm-color-primary);
+  --adm-button-danger-text-color: var(--adm-color-white);
+  --adm-button-danger-background-color: var(--adm-color-danger);
+  --adm-button-danger-border-color: var(--adm-color-danger);
+  
+  /* 标签页 Tabs */
+  --adm-tabs-active-text-color: var(--adm-color-primary);
+  --adm-tabs-active-line-color: var(--adm-color-primary);
+  --adm-tabs-text-color: var(--adm-color-text);
+  --adm-tabs-background-color: var(--adm-color-background);
+  
+  /* 单选框 Radio */
+  --adm-radio-checked-color: var(--adm-color-primary);
+  --adm-radio-unchecked-color: #A8B9C0;
+  --adm-radio-text-color: var(--adm-color-text);
+  
+  /* 复选框 Checkbox */
+  --adm-checkbox-checked-color: var(--adm-color-primary);
+  --adm-checkbox-unchecked-color: #A8B9C0;
+  --adm-checkbox-text-color: var(--adm-color-text);
+  
+  /* 开关 Switch */
+  --adm-switch-checked-color: var(--adm-color-primary);
+  --adm-switch-unchecked-color: rgba(38, 70, 83, 0.2);
+  --adm-switch-handle-color: var(--adm-color-white);
+  
+  /* 列表 List */
+  --adm-list-background-color: var(--adm-color-background);
+  --adm-list-item-text-color: var(--adm-color-text);
+  --adm-list-item-description-color: var(--adm-color-text-secondary);
+  --adm-list-item-active-background-color: var(--adm-color-fill);
+  
+  /* 轻提示 Toast */
+  --adm-toast-background-color: rgba(38, 70, 83, 0.8);
+  --adm-toast-text-color: var(--adm-color-white);
+  
+  /* 对话框 Dialog */
+  --adm-dialog-background-color: var(--adm-color-background);
+  --adm-dialog-title-color: var(--adm-color-text);
+  --adm-dialog-content-color: var(--adm-color-text-secondary);
+  --adm-dialog-footer-color: var(--adm-color-text);
+  
+  /* 导航栏 NavBar */
+  --adm-nav-bar-text-color: var(--adm-color-text);
+  --adm-nav-bar-background-color: var(--adm-color-background);
+  --adm-nav-bar-border-color: var(--adm-color-border);
+  
+  /* 徽标 Badge */
+  --adm-badge-background-color: var(--adm-color-danger);
+  --adm-badge-text-color: var(--adm-color-white);
+  
+  /* 搜索框 SearchBar */
+  --adm-search-bar-text-color: var(--adm-color-text);
+  --adm-search-bar-background-color: var(--adm-color-box);
+  --adm-search-bar-icon-color: #A8B9C0;
+  
+  /* 底部标签栏 TabBar */
+  --adm-tab-bar-text-color: var(--adm-color-text-secondary);
+  --adm-tab-bar-active-text-color: var(--adm-color-primary);
+  --adm-tab-bar-background-color: var(--adm-color-background);
+  --adm-tab-bar-border-color: var(--adm-color-border);
+  
+  /* 滑块 Slider */
+  --adm-slider-track-color: var(--adm-color-primary);
+  --adm-slider-track-background-color: var(--adm-color-border);
+  --adm-slider-thumb-color: var(--adm-color-white);
+  --adm-slider-thumb-shadow-color: rgba(0, 0, 0, 0.08);
+  
+  /* 步进器 Stepper */
+  --adm-stepper-button-text-color: var(--adm-color-primary);
+  --adm-stepper-button-background-color: var(--adm-color-background);
+  --adm-stepper-button-disabled-color: var(--adm-color-text-quaternary);
+  
+  /* 卡片 Card */
+  --adm-card-background-color: var(--adm-color-background);
+  --adm-card-title-color: var(--adm-color-text);
+  --adm-card-content-color: var(--adm-color-text-secondary);
+  --adm-card-border-color: var(--adm-color-border);
+  
+  /* 消息气泡 */
+  --user-message-bg: #F4A261;
+  --user-message-text: #FFFFFF;
+  --assistant-message-bg: #E9E6DF;
+  --assistant-message-text: #264653;
+
+  /* AntD Mobile 覆盖 */
+  --adm-color-background: var(--color-bg-primary);
+  --adm-color-text: var(--color-text-primary);
+  --adm-color-border: var(--color-border);
+}
+
+html[data-theme='dark'][data-theme-pack='animal'] {
+  /* ===== 品牌色系 ===== */
+  --adm-color-primary: #F6B584;
+  --adm-color-primary-light: #F9C9A0;
+  --adm-color-primary-lighter: #FBD8B9;
+  --adm-color-primary-dark: #E67E22;
+  
+  /* ===== 功能色系 ===== */
+  --adm-color-success: #3EBFAF;
+  --adm-color-success-light: #74D3C9;
+  --adm-color-success-lighter: #A1E3DC;
+  --adm-color-success-dark: #2A9D8F;
+  
+  --adm-color-warning: #ECD28A;
+  --adm-color-warning-light: #F4E6B5;
+  --adm-color-warning-lighter: #F7EFD4;
+  --adm-color-warning-dark: #E9C46A;
+  
+  --adm-color-danger: #EB8D74;
+  --adm-color-danger-light: #F5BEB0;
+  --adm-color-danger-lighter: #F8D5CC;
+  --adm-color-danger-dark: #E76F51;
+  
+  --adm-color-info: #68B2B0;
+  --adm-color-info-light: #9CD1D0;
+  --adm-color-info-lighter: #C5E6E5;
+  --adm-color-info-dark: #4D908E;
+  
+  /* ===== 辅助色系 ===== */
+  --adm-color-yellow: #FFDD99;
+  --adm-color-orange: #EB8D74;
+  --adm-color-wathet: #457B9D;
+  
+  /* ===== 中性色系 ===== */
+  --adm-color-white: #FFFFFF;
+  --adm-color-black: #000000;
+  
+  /* 文字颜色 - 暗黑模式 */
+  --adm-color-text: #F5F5F5;
+  --adm-color-text-secondary: #A6D4F4;
+  --adm-color-text-tertiary: #9DB9C4;
+  --adm-color-text-quaternary: #728995;
+  --adm-color-weak: #9DB9C4;
+  --adm-color-light: #9DB9C4;
+  
+  /* 背景颜色 - 暗黑模式 */
+  --adm-color-background: #1A1A24;
+  --adm-color-box: #2E2E3C;
+  --adm-color-box-light: #1A1A24;
+  --adm-color-fill: #2E2E3C;
+  --adm-color-fill-light: #2E2E3C;
+  --adm-color-fill-content: #2E2E3C;
+  --adm-color-highground: #2E2E3C;
+  
+  /* 边框颜色 - 暗黑模式 */
+  --adm-color-border: #3D3D4D;
+  --adm-color-border-dark: #4D4D61;
+  --adm-color-border-light: #2E2E3C;
+  
+  /* 遮罩颜色 - 暗黑模式 */
+  --adm-color-mask: rgba(0, 0, 0, 0.7);
+  
+  /* ===== 高亮与固定色 ===== */
+  --adm-color-highlight: var(--adm-color-warning);
+  --adm-color-text-light-solid: var(--adm-color-white);
+  --adm-color-text-dark-solid: #121218;
+  
+  /* ===== 页面基础颜色 - 暗黑模式 ===== */
+  --color-bg-primary: #1A1A24;
+  --color-bg-secondary: #2E2E3C;
+  --color-bg-tertiary: #3D3D4D;
+  --color-text-primary: #F5F5F5;
+  --color-text-secondary: #A6D4F4;
+  --color-text-tertiary: #9DB9C4;
+  --color-border: #3D3D4D;
+  --color-border-light: #2E2E3C;
+  --color-card-bg: #2E2E3C;
+  --color-card-shadow: rgba(0, 0, 0, 0.3);
+
+  /* ===== 组件特定颜色 - 暗黑模式 ===== */
+  /* 按钮 Button */
+  --adm-button-text-color: var(--adm-color-text);
+  --adm-button-background-color: #232330;
+  --adm-button-border-color: #4D4D61;
+  --adm-button-primary-text-color: var(--adm-color-white);
+  --adm-button-primary-background-color: var(--adm-color-primary);
+  --adm-button-primary-border-color: var(--adm-color-primary);
+  --adm-button-danger-text-color: var(--adm-color-white);
+  --adm-button-danger-background-color: var(--adm-color-danger);
+  --adm-button-danger-border-color: var(--adm-color-danger);
+  
+  /* 标签页 Tabs */
+  --adm-tabs-active-text-color: var(--adm-color-primary);
+  --adm-tabs-active-line-color: var(--adm-color-primary);
+  --adm-tabs-text-color: var(--adm-color-text);
+  --adm-tabs-background-color: var(--adm-color-background);
+  
+  /* 单选框 Radio */
+  --adm-radio-checked-color: var(--adm-color-primary);
+  --adm-radio-unchecked-color: #4D4D61;
+  --adm-radio-text-color: var(--adm-color-text);
+  
+  /* 复选框 Checkbox */
+  --adm-checkbox-checked-color: var(--adm-color-primary);
+  --adm-checkbox-unchecked-color: #4D4D61;
+  --adm-checkbox-text-color: var(--adm-color-text);
+  
+  /* 开关 Switch */
+  --adm-switch-checked-color: var(--adm-color-primary);
+  --adm-switch-unchecked-color: rgba(255, 255, 255, 0.2);
+  --adm-switch-handle-color: var(--adm-color-white);
+  
+  /* 列表 List */
+  --adm-list-background-color: var(--adm-color-background);
+  --adm-list-item-text-color: var(--adm-color-text);
+  --adm-list-item-description-color: var(--adm-color-text-secondary);
+  --adm-list-item-active-background-color: #3D3D4D;
+  
+  /* 轻提示 Toast */
+  --adm-toast-background-color: rgba(255, 255, 255, 0.12);
+  --adm-toast-text-color: var(--adm-color-white);
+  
+  /* 对话框 Dialog */
+  --adm-dialog-background-color: #2E2E3C;
+  --adm-dialog-title-color: var(--adm-color-text);
+  --adm-dialog-content-color: var(--adm-color-text-secondary);
+  --adm-dialog-footer-color: var(--adm-color-text);
+  
+  /* 导航栏 NavBar */
+  --adm-nav-bar-text-color: var(--adm-color-text);
+  --adm-nav-bar-background-color: var(--adm-color-background);
+  --adm-nav-bar-border-color: var(--adm-color-border);
+  
+  /* 徽标 Badge */
+  --adm-badge-background-color: var(--adm-color-danger);
+  --adm-badge-text-color: var(--adm-color-white);
+  
+  /* 搜索框 SearchBar */
+  --adm-search-bar-text-color: var(--adm-color-text);
+  --adm-search-bar-background-color: #3D3D4D;
+  --adm-search-bar-icon-color: #9DB9C4;
+  
+  /* 底部标签栏 TabBar */
+  --adm-tab-bar-text-color: var(--adm-color-text-secondary);
+  --adm-tab-bar-active-text-color: var(--adm-color-primary);
+  --adm-tab-bar-background-color: #121218;
+  --adm-tab-bar-border-color: var(--adm-color-border);
+  
+  /* 滑块 Slider */
+  --adm-slider-track-color: var(--adm-color-primary);
+  --adm-slider-track-background-color: #3D3D4D;
+  --adm-slider-thumb-color: var(--adm-color-white);
+  --adm-slider-thumb-shadow-color: rgba(0, 0, 0, 0.3);
+  
+  /* 步进器 Stepper */
+  --adm-stepper-button-text-color: var(--adm-color-primary);
+  --adm-stepper-button-background-color: #232330;
+  --adm-stepper-button-disabled-color: #4D4D61;
+  
+  /* 卡片 Card */
+  --adm-card-background-color: #2E2E3C;
+  --adm-card-title-color: var(--adm-color-text);
+  --adm-card-content-color: var(--adm-color-text-secondary);
+  --adm-card-border-color: var(--adm-color-border);
+  
+  /* 消息气泡 - 暗黑模式 */
+  --user-message-bg: #E76F51;
+  --user-message-text: #FFFFFF;
+  --assistant-message-bg: #3D3D4D;
+  --assistant-message-text: #F5F5F5;
+
+  /* AntD Mobile 覆盖 - 暗黑模式 */
+  --adm-color-background: var(--color-bg-primary);
+  --adm-color-text: var(--color-text-primary);
+  --adm-color-border: var(--color-border);
+}
