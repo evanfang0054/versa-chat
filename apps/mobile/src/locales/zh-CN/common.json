@@ -1,0 +1,52 @@
+{
+  "session": {
+    "manage": "会话管理",
+    "new": "新会话",
+    "add": "新增会话",
+    "added": "会话已添加",
+    "remove": "删除",
+    "delete": "删除",
+    "removed": "会话已删除",
+    "cannotRemoveLast": "不能删除最后一个会话",
+    "welcome": "您好，请问需要什么帮助？",
+    "rename": "重命名",
+    "nameCannotBeEmpty": "会话名称不能为空",
+    "permanentlyDelete": "永久删除对话",
+    "deleteConfirmation": "删除后，该对话将不可恢复。确认删除吗？"
+  },
+  "language": {
+    "switch": "切换语言",
+    "zh": "中文",
+    "en": "英文",
+    "switchedToZh": "已切换到中文",
+    "switchedToEn": "已切换到英文"
+  },
+  "chat": {
+    "placeholder": "请输入消息...",
+    "cancel": "取消",
+    "send": "发送"
+  },
+  "common": {
+    "cancel": "取消",
+    "delete": "删除"
+  },
+  "payment": {
+    "title": "支付记录",
+    "detailTitle": "支付详情",
+    "id": "支付ID",
+    "amount": "金额",
+    "createdAt": "创建时间",
+    "description": "描述",
+    "defaultDescription": "未提供描述",
+    "action": "操作",
+    "detail": "查看详情",
+    "backToList": "返回列表",
+    "retryPayment": "重新支付",
+    "notFound": "未找到支付记录",
+    "status": {
+      "pending": "待支付",
+      "success": "支付成功",
+      "failed": "支付失败"
+    }
+  }
+}

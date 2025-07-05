@@ -1,0 +1,52 @@
+{
+  "session": {
+    "manage": "Session Management",
+    "new": "New Session",
+    "add": "Add Session",
+    "added": "Session Added",
+    "remove": "Remove",
+    "delete": "Delete",
+    "removed": "Session Removed",
+    "cannotRemoveLast": "Cannot remove the last session",
+    "welcome": "Hello, how can I help you?",
+    "rename": "Rename",
+    "nameCannotBeEmpty": "Session name cannot be empty",
+    "permanentlyDelete": "Permanently Delete Session",
+    "deleteConfirmation": "After deletion, the session cannot be recovered. Are you sure?"
+  },
+  "language": {
+    "switch": "Switch Language",
+    "zh": "Chinese",
+    "en": "English",
+    "switchedToZh": "Switched to Chinese",
+    "switchedToEn": "Switched to English"
+  },
+  "chat": {
+    "placeholder": "Please enter a message...",
+    "cancel": "Cancel",
+    "send": "Send"
+  },
+  "common": {
+    "cancel": "Cancel",
+    "delete": "Delete"
+  },
+  "payment": {
+    "title": "Payment Records",
+    "detailTitle": "Payment Details",
+    "id": "Payment ID",
+    "amount": "Amount",
+    "createdAt": "Created At",
+    "description": "Description",
+    "defaultDescription": "No description provided",
+    "action": "Action",
+    "detail": "View Details",
+    "backToList": "Back to List",
+    "retryPayment": "Retry Payment",
+    "notFound": "Payment record not found",
+    "status": {
+      "pending": "Pending",
+      "success": "Success",
+      "failed": "Failed"
+    }
+  }
+}
