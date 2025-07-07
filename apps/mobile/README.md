@@ -22,7 +22,6 @@ Versa Chat 是一个功能丰富的移动聊天应用模板，基于 React 和 V
 - **UI 框架**：Ant Design Mobile + Tailwind CSS
 - **状态管理**：Zustand + Immer
 - **路由**：React Router 6
-- **HTTP 客户端**：Axios
 - **国际化**：i18next + react-i18next
 - **虚拟列表**：react-virtualized
 - **其他工具**：amfe-flexible, uuid, lodash-es
