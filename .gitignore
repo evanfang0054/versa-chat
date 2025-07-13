@@ -59,6 +59,7 @@ stats.html
 .Trashes
 ehthumbs.db
 Thumbs.db
+.roo
 
 # Test coverage
 coverage
