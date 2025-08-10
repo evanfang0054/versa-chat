@@ -50,6 +50,8 @@ stats.html
 .dumi/tmp-production
 .cspellcache
 .turbo
+.claude
+CLAUDE.md
 
 # OS generated files
 .DS_Store

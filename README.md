@@ -1,300 +1,584 @@
 # Versa Chat
 
-Versa Chat Ai聊天 支持多种消息类型插件(卡片、iframe、文本、图片、音频等等)接入、monorepo架构体系
+Versa Chat AI 聊天应用，基于 Monorepo 架构构建，包含移动端聊天应用和 Design-to-Code 工具。
 
-## 技术栈
+## 🚀 项目概览
 
-- 📦 Monorepo - 使用 pnpm workspace 和 Turborepo 管理
-- 🚀 构建工具 - Vite
-- 🎨 UI 框架 - Ant Design Mobile
-- 📱 移动端适配 - amfe-flexible + postcss-pxtorem
-- 🌐 国际化 - i18next + react-i18next
-- 🎯 状态管理 - Zustand
-- 🎨 样式方案 - TailwindCSS
-- 📝 类型检查 - TypeScript
-- 🔍 代码规范 - ESLint + Prettier
-- 📦 版本管理 - Changesets
-- 🐳 容器化 - Docker + Nginx
+### 核心应用
 
-## 项目结构
+**📱 移动端聊天应用** (`@versa-chat/mobile`)
+- 基于 React + Vite + TypeScript 构建
+- 支持多种消息类型：文本、图片、iframe、卡片等
+- 集成智能旅游助手 AI 助手
+- 支持会话管理、主题切换、多语言国际化
+- 包含支付模块，支持支付列表和详情查看
+
+**🎨 Design-to-Code 工具** (`@versa-chat/design-to-code`)
+- Figma 设计稿转代码工具
+- 集成 Monaco Editor 代码编辑器
+- 支持 AI 辅助代码生成（OpenAI）
+- 自动生成符合企业规范的 React 组件
+- 支持多种样式框架和配置选项
+
+### 技术栈
+
+- 📦 **Monorepo 管理** - pnpm workspace + Turborepo
+- 🚀 **构建工具** - Vite + TypeScript
+- 🎨 **UI 框架** - Ant Design Mobile (移动端) / Ant Design (PC端)
+- 📱 **移动端适配** - amfe-flexible + postcss-pxtorem
+- 🌐 **国际化** - i18next + react-i18next
+- 🎯 **状态管理** - Zustand + persist 中间件
+- 🎨 **样式方案** - TailwindCSS + Less
+- 🔧 **代码编辑** - Monaco Editor
+- 🤖 **AI 集成** - OpenAI API
+- 📝 **类型检查** - TypeScript 严格模式
+- 🔍 **代码规范** - ESLint + Prettier + Husky
+- 📦 **版本管理** - Changesets
+- 🐳 **容器化** - Docker + Nginx
+
+## 🏗️ 项目架构
+
+### 目录结构
 
 ```
 .
 ├── README.md                 # 项目说明文档
-├── apps                      # 应用程序目录，存放最终的应用
-│   ├── mobile               # 移动端应用
-│   └── design-to-code       # Design-to-Code应用
+├── apps/                     # 应用程序目录
+│   ├── mobile/              # 移动端聊天应用
+│   │   ├── src/
+│   │   │   ├── components/   # 业务组件
+│   │   │   │   ├── HeaderBar/     # 顶部导航栏
+│   │   │   │   ├── SessionManager/ # 会话管理
+│   │   │   │   ├── ThemeToggle/    # 主题切换
+│   │   │   │   ├── ThemeSwitcher/  # 主题包切换
+│   │   │   │   └── LanguageSwitcher/ # 语言切换
+│   │   │   ├── pages/        # 页面组件
+│   │   │   │   ├── chat/          # 聊天页面
+│   │   │   │   ├── demo/          # 演示页面
+│   │   │   │   └── payment/       # 支付模块
+│   │   │   ├── stores/       # 状态管理
+│   │   │   │   ├── chatStore.ts   # 聊天状态
+│   │   │   │   ├── paymentStore.ts # 支付状态
+│   │   │   │   └── themeStore.ts   # 主题状态
+│   │   │   └── constants/    # 常量配置
+│   │   │       └── prompts.ts     # AI 提示词模板
+│   └── design-to-code/      # Design-to-Code 应用
+│       ├── src/
+│       │   ├── api/         # API 接口
+│       │   │   ├── figma.ts       # Figma API
+│       │   │   └── openai.ts      # OpenAI API
+│       │   ├── services/    # 业务服务
+│       │   │   ├── aiCodeService.ts   # AI 代码生成
+│       │   │   ├── codeGenerator.ts    # 代码生成器
+│       │   │   └── figmaProcessor.ts   # Figma 数据处理
+│       │   └── transformers/ # 转换器
+│       │       ├── effects.ts      # 效果转换
+│       │       ├── layout.ts       # 布局转换
+│       │       └── style.ts        # 样式转换
+├── packages/                 # 公共包目录
+│   ├── ui/                  # 共享 UI 组件库
+│   │   └── src/
+│   │       └── components/
+│   │           ├── chat/         # 聊天组件
+│   │           │   ├── Chat.tsx      # 主聊天组件
+│   │           │   ├── plugins/      # 消息插件
+│   │           │   └── hooks/        # 聊天相关 hooks
+│   │           ├── InputArea/    # 输入框组件
+│   │           ├── RichText/     # 富文本组件
+│   │           └── ErrorBoundary/ # 错误边界
+│   ├── hooks/               # 共享 React Hooks
+│   ├── utils/               # 工具函数库
+│   │   └── src/
+│   │       ├── request/      # HTTP 请求库
+│   │       └── pubsub/       # 发布订阅
+│   └── config/              # 共享配置
 ├── package.json             # 根项目配置文件
-├── packages                 # 公共包目录，存放共享的模块
-│   ├── config              # 配置相关的包（如：eslint, prettier 等配置）
-│   ├── hooks               # React Hooks 相关的公共逻辑
-│   ├── ui                  # UI 组件库
-│   └── utils              # 通用工具函数包
-├── pnpm-lock.yaml         # pnpm 依赖锁定文件
-├── pnpm-workspace.yaml    # pnpm 工作空间配置文件
-├── tsconfig.base.json     # TypeScript 基础配置文件
-├── turbo.json             # Turborepo 配置文件，用于管理构建流程
-├── Dockerfile             # Docker 镜像构建文件
-├── docker-compose.yml     # Docker Compose 配置文件
-├── nginx.conf             # Nginx 配置文件
-└── logs                   # 应用日志目录
-    ├── mobile             # 移动端应用日志
-    └── design             # Design-to-Code应用日志
+├── pnpm-workspace.yaml    # pnpm 工作空间配置
+├── turbo.json             # Turborepo 构建配置
+├── docker-compose.yml     # Docker 容器编排
+└── nginx.conf             # Nginx 配置
 ```
 
-## 开发指南
+### 核心特性
+
+#### 🎯 消息插件系统
+- **可扩展架构**: 支持自定义消息类型插件
+- **内置插件**: 文本、图片、iframe、卡片消息
+- **虚拟滚动**: 使用 react-virtuoso 处理大量消息
+- **自动滚动**: 智能滚动到最新消息
+
+#### 🎨 主题系统
+- **多主题支持**: 内置 AI、动物、默认主题包
+- **暗黑模式**: 完整的暗色主题支持
+- **CSS 变量**: 基于 CSS 变量的主题切换
+- **持久化**: 主题偏好本地存储
+
+#### 🌐 国际化支持
+- **多语言**: 中文、英文支持
+- **i18next**: 业界标准的国际化方案
+- **动态加载**: 支持语言包动态加载
+- **Ant Design 同步**: 组件库语言包自动切换
+
+#### 🤖 AI 集成
+- **智能助手**: 集成旅游助手 AI
+- **代码生成**: Design-to-Code 支持 AI 辅助编程
+- **OpenAI**: 基于 GPT 模型的智能服务
+- **提示词工程**: 优化的 AI 提示词模板
+
+## 🛠️ 开发指南
 
 ### 环境要求
 
-- Node.js >= 18
-- pnpm >= 8
-- Docker >= 20.10 (可选，用于容器化部署)
+- **Node.js**: >= 18.20.0
+- **pnpm**: >= 9.4.0
+- **Docker**: >= 20.10 (可选，用于容器化部署)
 
-### 安装依赖
+### 快速开始
 
 ```bash
+# 1. 安装依赖
 pnpm install
-```
 
-### 开发
-
-```bash
-# 启动所有项目
+# 2. 启动开发服务器
 pnpm dev
 
-# 启动特定项目
-pnpm dev --filter=@versa-chat/mobile
-pnpm dev --filter=@versa-chat/design-to-code
+# 3. 启动特定应用
+pnpm dev --filter=@versa-chat/mobile      # 移动端应用 (端口 5173)
+pnpm dev --filter=@versa-chat/design-to-code # Design-to-Code (端口 5174)
 ```
 
-### 构建
+### 开发工作流
 
+#### 应用开发
 ```bash
-# 构建所有项目
+# 构建应用
 pnpm build
 
-# 构建特定项目
+# 构建特定应用
 pnpm build --filter=@versa-chat/mobile
 pnpm build --filter=@versa-chat/design-to-code
-```
-
-### 代码规范
-
-```bash
-# 代码格式化
-pnpm format
 
 # 代码检查
 pnpm lint
+
+# 代码格式化
+pnpm format
 ```
 
-### 版本发布
+#### 组件开发
+```bash
+# 开发共享组件
+cd packages/ui
+pnpm dev
 
+# 开发工具库
+cd packages/utils
+pnpm build
+```
+
+#### 版本管理
 ```bash
 # 创建变更集
 pnpm changeset
 
-# 更新版本
+# 更新版本号
 pnpm version
 
-# 发布
+# 发布版本
 pnpm release
 ```
 
-## Docker 部署
+### 🔧 开发规范
 
-项目支持使用 Docker 进行容器化部署，提供高性能、高稳定的运行环境。应用被拆分为两个独立的服务，通过不同的端口访问。
+#### 组件开发规范
+- **文件结构**: 每个组件包含 `index.ts`、`interface.ts`、`ComponentName.tsx`、`helpers.ts`
+- **UI 框架**: 移动端使用 Ant Design Mobile，PC端使用 Ant Design
+- **样式**: 统一使用 TailwindCSS
+- **数据流**: 严格遵循单向数据流，数据通过 props 传入，事件通过回调传出
+- **TypeScript**: 启用严格模式，完整的类型定义
 
-### 构建 Docker 镜像
+#### 状态管理规范
+- **Store 拆分**: 按功能模块拆分 Zustand store
+- **持久化**: 使用 persist 中间件实现本地存储
+- **类型安全**: 完整的 TypeScript 类型定义
+- **性能优化**: 避免不必要的重渲染
+
+#### 代码质量
+- **ESLint**: 严格的代码规范检查
+- **Prettier**: 统一的代码格式化
+- **Husky**: Git hooks 自动化检查
+- **Commitlint**: 提交信息规范
+
+### 🧪 测试
 
 ```bash
-# 使用 Docker Compose 构建所有应用
-docker-compose build
+# 运行所有测试
+pnpm test
 
-# 或分别构建各应用
-docker-compose build mobile-app
-docker-compose build design-to-code-app
+# 运行特定应用测试
+pnpm test --filter=@versa-chat/mobile
+
+# 生成测试覆盖率报告
+pnpm test:coverage
 ```
 
-### 运行容器
+### 🐳 Docker 部署
 
 ```bash
-# 使用 Docker Compose 启动所有应用（推荐）
+# 构建所有应用镜像
+docker-compose build
+
+# 启动所有服务
 docker-compose up -d
 
-# 或分别启动各应用
+# 查看服务状态
+docker-compose ps
+
+# 查看日志
+docker-compose logs -f
+```
+
+## 🚢 部署指南
+
+### Docker 容器化部署
+
+项目采用 Docker + Nginx 的高性能部署方案，两个应用独立部署在不同端口：
+
+- **移动端应用**: http://localhost:80/
+- **Design-to-Code 应用**: http://localhost:8080/
+
+#### 快速部署
+
+```bash
+# 构建并启动所有服务
+docker-compose up -d
+
+# 查看服务状态
+docker-compose ps
+
+# 查看实时日志
+docker-compose logs -f
+```
+
+#### 独立部署
+
+```bash
+# 构建特定应用
+docker-compose build mobile-app
+docker-compose build design-to-code-app
+
+# 启动特定服务
 docker-compose up -d mobile-app
 docker-compose up -d design-to-code-app
 ```
 
-### 访问应用
+### 🔧 配置管理
 
-容器启动后，可通过以下地址访问应用：
+#### 环境变量配置
 
-- 移动端应用：http://localhost/ 或 http://localhost:80/
-- Design-to-Code 应用：http://localhost:8080/
-
-### 容器管理
+项目支持以下环境变量：
 
 ```bash
-# 查看所有容器状态
-docker ps
+# Node.js 环境
+NODE_ENV=production
 
-# 查看容器日志
-docker logs versa-chat-mobile    # 查看移动端应用日志
-docker logs versa-chat-design    # 查看Design-to-Code应用日志
+# 部署环境
+DEPLOY_ENV=production
 
-# 停止所有容器
-docker-compose down
+# API 基础地址
+API_BASE_URL=https://api.example.com
 
-# 停止特定容器
-docker stop versa-chat-mobile
-docker stop versa-chat-design
+# Figma API Token (Design-to-Code)
+VITE_FIGMA_TOKEN=your_figma_token
 
-# 重启所有容器
-docker-compose restart
-
-# 重启特定容器
-docker restart versa-chat-mobile
-docker restart versa-chat-design
+# OpenAI API Key (AI 功能)
+VITE_OPENAI_API_KEY=your_openai_key
 ```
 
-### 日志管理
+#### Nginx 配置优化
 
-应用日志被映射到本地目录，可以直接查看：
+```nginx
+# nginx.conf 核心配置
+worker_processes auto;
+events {
+    worker_connections 1024;
+}
+
+http {
+    # 移动端应用
+    server {
+        listen 80;
+        server_name localhost;
+        root /usr/share/nginx/html/mobile;
+        
+        # 静态资源缓存
+        location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg)$ {
+            expires 1y;
+            add_header Cache-Control "public, immutable";
+        }
+        
+        # SPA 路由支持
+        location / {
+            try_files $uri $uri/ /index.html;
+        }
+    }
+    
+    # Design-to-Code 应用
+    server {
+        listen 8080;
+        server_name localhost;
+        root /usr/share/nginx/html/design-to-code;
+        
+        # 类似配置...
+    }
+}
+```
+
+### 📊 监控与日志
+
+#### 日志管理
 
 ```bash
-# 移动端应用日志
-ls -la logs/mobile/
+# 查看应用日志
+docker-compose logs -f mobile-app
+docker-compose logs -f design-to-code-app
 
-# Design-to-Code应用日志
-ls -la logs/design/
+# 查看特定时间日志
+docker-compose logs --since 1h mobile-app
+
+# 导出日志
+docker-compose logs mobile-app > mobile.log
 ```
 
-### 高级配置
+#### 性能监控
 
-如需自定义配置，可以修改以下文件：
+```bash
+# 查看容器资源使用情况
+docker stats
 
-- `docker-compose.yml`: 调整容器资源限制、端口映射等
-- `nginx.conf`: 自定义 Nginx 服务器配置
-- `Dockerfile`: 自定义构建过程
+# 查看容器详细信息
+docker inspect versa-chat-mobile
 
-#### 修改端口映射
-
-如果需要修改端口映射，可以编辑 `docker-compose.yml` 文件：
-
-```yaml
-services:
-  mobile-app:
-    ports:
-      - "自定义端口:80"
-  
-  design-to-code-app:
-    ports:
-      - "自定义端口:8080"
+# 进入容器调试
+docker exec -it versa-chat-mobile sh
 ```
 
-#### 修改资源限制
+### 🔒 安全配置
 
-可以根据服务器资源情况调整容器资源限制：
+#### HTTPS 配置
 
-```yaml
-services:
-  mobile-app:
-    deploy:
-      resources:
-        limits:
-          cpus: '0.5'  # 调整CPU限制
-          memory: 512M  # 调整内存限制
+```nginx
+# SSL 配置示例
+server {
+    listen 443 ssl;
+    server_name your-domain.com;
+    
+    ssl_certificate /path/to/cert.pem;
+    ssl_certificate_key /path/to/key.pem;
+    
+    # SSL 优化配置
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers HIGH:!aNULL:!MD5;
+}
 ```
 
-### 常见问题排查
+#### 安全头部
 
-#### 1. 应用无法访问
+```nginx
+# 安全响应头
+add_header X-Frame-Options "SAMEORIGIN";
+add_header X-Content-Type-Options "nosniff";
+add_header X-XSS-Protection "1; mode=block";
+add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+```
 
-- 检查容器是否正常运行：`docker ps`
-- 检查端口是否被占用：`netstat -tuln | grep 80` 和 `netstat -tuln | grep 8080`
-- 检查容器日志：`docker logs versa-chat-mobile` 或 `docker logs versa-chat-design`
-- 检查 Nginx 配置是否正确：`docker exec -it versa-chat-mobile nginx -t`
+## 📈 性能优化
 
-#### 2. 资源文件 404 错误
+### 构建优化
 
-- 检查 Nginx 配置中的路径是否正确
-- 检查构建产物是否正确复制到容器中：`docker exec -it versa-chat-mobile ls -la /usr/share/nginx/html/mobile/assets/`
-- 检查浏览器网络请求，查看具体哪些资源文件无法加载
+#### 代码分割
 
-#### 3. 容器启动失败
+```javascript
+// vite.config.ts
+export default defineConfig({
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          antd: ['antd-mobile'],
+          utils: ['lodash-es', 'zustand']
+        }
+      }
+    }
+  }
+})
+```
 
-如果容器无法正常启动：
-- 检查日志：`docker logs versa-chat-mobile`
-- 尝试以交互方式运行容器排查问题：`docker run -it --rm versa-chat:mobile sh`
-- 检查 Nginx 配置是否有语法错误：`docker run -it --rm versa-chat:mobile nginx -t`
+#### 资源优化
 
-#### 4. 性能优化
+```javascript
+// 压缩配置
+import compression from 'vite-plugin-compression'
 
-如果应用性能不佳：
-- 调整 Nginx worker 进程数：编辑 `nginx.conf` 添加 `worker_processes auto;`
-- 优化静态资源缓存策略
-- 考虑使用 CDN 分发静态资源
+export default defineConfig({
+  plugins: [
+    compression({
+      algorithm: 'gzip',
+      ext: '.gz',
+    })
+  ]
+})
+```
 
-## 目录说明
+### 运行时优化
 
-### apps/mobile
+#### 缓存策略
 
-移动端应用，基于 React + Vite + TypeScript + Ant Design Mobile。通过 80 端口访问。
+```javascript
+// Service Worker 缓存
+const CACHE_NAME = 'versa-chat-v1';
+const urlsToCache = [
+  '/',
+  '/static/js/bundle.js',
+  '/static/css/main.css'
+];
 
-### apps/design-to-code
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(cache => cache.addAll(urlsToCache))
+  );
+});
+```
 
-Design-to-Code 应用，Figma 设计稿转代码工具。通过 8080 端口访问。
+#### 懒加载
 
-### packages/ui
+```javascript
+// 路由懒加载
+const ChatPage = lazy(() => import('@/pages/chat'));
+const DesignPage = lazy(() => import('@/pages/design'));
 
-共享 UI 组件库，包含业务通用组件。
+// 组件懒加载
+const HeavyComponent = lazy(() => import('./HeavyComponent'));
+```
 
-### packages/hooks
+## 🐛 故障排查
 
-共享 Hooks 库，包含业务通用 Hooks。
+### 常见问题
 
-### packages/utils
+#### 1. 构建失败
 
-工具函数库，包含业务通用工具函数。
+```bash
+# 清理缓存重新构建
+pnpm clean
+pnpm install
+pnpm build
 
-### packages/config
+# 检查 Node.js 版本
+node --version  # 需要 >= 18.20.0
+```
 
-共享配置库，包含业务通用配置。
+#### 2. 启动失败
 
-## 最佳实践
+```bash
+# 检查端口占用
+lsof -i :80
+lsof -i :8080
 
-1. 组件开发
+# 检查 Docker 服务
+docker --version
+docker-compose --version
+```
 
-   - 遵循 React Hooks 最佳实践
-   - 使用 TypeScript 严格模式
-   - 编写单元测试
+#### 3. API 请求失败
 
-2. 状态管理
+```bash
+# 检查网络连接
+curl -I https://api.example.com
 
-   - 使用 Zustand 进行状态管理
-   - 按功能模块拆分 store
-   - 使用 TypeScript 类型约束
+# 检查环境变量
+echo $API_BASE_URL
+```
 
-3. 样式开发
+#### 4. 样式问题
 
-   - 使用 TailwindCSS 进行样式开发
-   - 遵循移动端适配方案
-   - 保持样式的可维护性
+```bash
+# 检查 TailwindCSS 配置
+npx tailwindcss --help
 
-4. 国际化
+# 检查 PostCSS 配置
+npx postcss --version
+```
 
-   - 使用 i18next 进行国际化
-   - 按模块组织语言包
-   - 支持动态加载语言包
+### 调试工具
 
-5. 工程规范
-   - 遵循 Git 分支管理规范
-   - 遵循代码提交信息规范
-   - 遵循版本发布规范
+#### React Developer Tools
 
-6. 部署策略
-   - 开发环境：本地开发服务器
-   - 测试环境：Docker 容器化部署
-   - 生产环境：Docker + Nginx 高性能部署，应用独立部署在不同端口
+```bash
+# 安装 React DevTools
+npm install -g react-devtools
+
+# 启动调试
+react-devtools
+```
+
+#### Vue DevTools (如需要)
+
+```bash
+# 安装 Vue DevTools
+npm install -g @vue/devtools
+
+# 启动调试
+vue-devtools
+```
+
+## 🤝 贡献指南
+
+### 开发流程
+
+1. **Fork 项目** 并创建特性分支
+2. **遵循开发规范** 进行代码开发
+3. **运行测试** 确保代码质量
+4. **提交变更** 并创建 Pull Request
+5. **代码审查** 通过后合并
+
+### Git 规范
+
+```bash
+# 提交信息格式
+<type>(<scope>): <description>
+
+# 示例
+feat(chat): 添加消息持久化功能
+fix(payment): 修复支付金额显示问题
+docs(readme): 更新项目文档
+style(ui): 优化按钮样式
+test(chat): 添加聊天组件单元测试
+```
+
+### 代码审查清单
+
+- [ ] 代码符合项目规范
+- [ ] TypeScript 类型定义完整
+- [ ] 组件具备可复用性
+- [ ] 包含必要的测试用例
+- [ ] 文档更新完整
+- [ ] 性能影响已评估
+
+## 📄 许可证
+
+本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。
+
+## 🔗 相关链接
+
+- [Ant Design Mobile](https://mobile.ant.design/)
+- [Vite](https://vitejs.dev/)
+- [Turborepo](https://turbo.build/repo)
+- [Zustand](https://zustand.docs.pmnd.rs/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [pnpm](https://pnpm.io/)
+
+---
+
+⭐ 如果这个项目对你有帮助，请考虑给个 Star！
