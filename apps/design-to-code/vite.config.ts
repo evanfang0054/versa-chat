@@ -17,8 +17,6 @@ export default defineConfig((config) => {
   const port = Number(env.VITE_APP_PORT) || 3000;
 
   return {
-    // 设置 base 路径，确保 hash 路由正确工作
-    base: './',
     plugins: [
       react(),
       // 兼容旧版浏览器
@@ -92,6 +90,11 @@ export default defineConfig((config) => {
           target: env.VITE_API_URL,
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, ''),
+        },
+        '/figma': {
+          target: 'https://api.figma.com',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/figma/, ''),
         },
       },
       // 启用 HMR

@@ -517,7 +517,7 @@ npx postcss --version
 
 ```bash
 # 安装 React DevTools
-npm install -g react-devtools
+pnpm install -g react-devtools
 
 # 启动调试
 react-devtools
@@ -527,7 +527,7 @@ react-devtools
 
 ```bash
 # 安装 Vue DevTools
-npm install -g @vue/devtools
+pnpm install -g @vue/devtools
 
 # 启动调试
 vue-devtools

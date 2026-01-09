@@ -1,0 +1,26 @@
+[
+  {
+      "language": "typescript",
+      "code": "// interface.ts\nimport { ReactNode } from 'react';\n\n/**\n * R组件Props类型定义\n */\nexport interface RProps {\n  /**\n   * 子元素内容\n   */\n  children?: ReactNode;\n  \n  /**\n   * 自定义类名\n   */\n  className?: string;\n  \n  /**\n   * 背景颜色\n   */\n  backgroundColor?: string;\n  \n  /**\n   * 圆角大小\n   */\n  borderRadius?: number;\n  \n  /**\n   * 是否显示阴影效果\n   */\n  shadow?: boolean;\n  \n  /**\n   * 内边距\n   */\n  padding?: string | number;\n  \n  /**\n   * 外边距\n   */\n  margin?: string | number;\n  \n  /**\n   * 卡片标题\n   */\n  title?: string;\n  \n  /**\n   * 卡片标题国际化Key\n   */\n  titleKey?: string;\n  \n  /**\n   * 点击事件回调\n   */\n  onClick?: () => void;\n  \n  /**\n   * 鼠标移入事件回调\n   */\n  onMouseEnter?: () => void;\n  \n  /**\n   * 鼠标移出事件回调\n   */\n  onMouseLeave?: () => void;\n  \n  /**\n   * 是否显示为暗色模式\n   */\n  darkMode?: boolean;\n  \n  /**\n   * 卡片类型\n   */\n  type?: 'default' | 'primary' | 'secondary';\n}\n\n/**\n * 样式配置类型\n */\nexport interface RStyleConfig {\n  /**\n   * 主色调\n   */\n  primaryColor?: string;\n  \n  /**\n   * 次色调\n   */\n  secondaryColor?: string;\n  \n  /**\n   * 文本颜色\n   */\n  textColor?: string;\n  \n  /**\n   * 暗色模式背景色\n   */\n  darkBackground?: string;\n  \n  /**\n   * 暗色模式文本颜色\n   */\n  darkTextColor?: string;\n}"
+  },
+  {
+      "language": "typescript",
+      "code": "// R.tsx\nimport React, { useMemo } from 'react';\nimport { useTranslation } from 'react-i18next';\nimport { RProps } from './interface';\nimport { Card } from 'antd-mobile';\nimport classNames from 'classnames';\nimport './styles.css';\n\n/**\n * 可重用的响应式卡片组件\n */\nconst R: React.FC<RProps> = ({\n  children,\n  className = '',\n  backgroundColor,\n  borderRadius = 16,\n  shadow = true,\n  padding = '24px 16px',\n  margin,\n  title,\n  titleKey,\n  onClick,\n  onMouseEnter,\n  onMouseLeave,\n  darkMode = false,\n  type = 'default',\n}) => {\n  const { t } = useTranslation();\n  \n  // 合并默认样式和传入的类名\n  const classes = classNames(\n    'r-component',\n    {\n      'r-shadow': shadow,\n      'r-dark': darkMode,\n      [`r-type-${type}`]: type !== 'default',\n    },\n    className\n  );\n\n  // 计算最终显示的标题\n  const displayTitle = useMemo(() => {\n    if (titleKey) return t(titleKey);\n    return title;\n  }, [title, titleKey, t]);\n\n  // 动态样式\n  const style = {\n    ...(backgroundColor && { backgroundColor }),\n    borderRadius: typeof borderRadius === 'number' ? `${borderRadius}px` : borderRadius,\n    padding: typeof padding === 'number' ? `${padding}px` : padding,\n    ...(margin && { margin: typeof margin === 'number' ? `${margin}px` : margin }),\n  };\n\n  return (\n    <Card\n      className={classes}\n      style={style}\n      onClick={onClick}\n      onMouseEnter={onMouseEnter}\n      onMouseLeave={onMouseLeave}\n    >\n      {displayTitle && <div className=\"r-title\">{displayTitle}</div>}\n      <div className=\"r-content\">{children}</div>\n    </Card>\n  );\n};\n\nexport default R;"
+  },
+  {
+      "language": "typescript",
+      "code": "// index.ts\nimport R from './R';\nexport type { RProps, RStyleConfig } from './interface';\n\nexport default R;"
+  },
+  {
+      "language": "typescript",
+      "code": "// helpers.ts\nimport { RStyleConfig } from './interface';\n\n/**\n * 生成组件CSS变量\n */\nexport const generateCSSVariables = (config: RStyleConfig): Record<string, string> => {\n  return {\n    '--r-primary-color': config.primaryColor || '#3727AB',\n    '--r-secondary-color': config.secondaryColor || '#17CE92',\n    '--r-text-color': config.textColor || '#333333',\n    '--r-dark-background': config.darkBackground || '#191919',\n    '--r-dark-text-color': config.darkTextColor || '#FFFFFF',\n  };\n};\n\n/**\n * 检查是否支持CSS变量\n */\nexport const supportsCSSVariables = (): boolean => {\n  return typeof window !== 'undefined' && \n         window.CSS && \n         window.CSS.supports && \n         window.CSS.supports('--a', '0');\n};"
+  },
+  {
+      "language": "css",
+      "code": "/* styles.css */\n.r-component {\n  transition: all 0.3s ease;\n  box-sizing: border-box;\n  position: relative;\n  background-color: var(--r-background, #FFFFFF);\n  color: var(--r-text-color, #333333);\n}\n\n.r-shadow {\n  box-shadow: 0 4px 34px rgba(0, 0, 0, 0.05);\n}\n\n.r-title {\n  font-weight: 600;\n  font-size: 1.2rem;\n  margin-bottom: 12px;\n  color: inherit;\n}\n\n.r-content {\n  width: 100%;\n}\n\n/* 暗色模式 */\n.r-dark {\n  background-color: var(--r-dark-background, #191919);\n  color: var(--r-dark-text-color, #FFFFFF);\n}\n\n/* 主题类型 */\n.r-type-primary {\n  background-color: var(--r-primary-color, #3727AB);\n  color: var(--r-dark-text-color, #FFFFFF);\n}\n\n.r-type-secondary {\n  background-color: var(--r-secondary-color, #17CE92);\n  color: var(--r-dark-text-color, #FFFFFF);\n}\n\n/* 响应式设计 */\n@media (max-width: 768px) {\n  .r-component {\n    padding: 16px 12px !important;\n    border-radius: 12px !important;\n  }\n  \n  .r-title {\n    font-size: 1.1rem;\n  }\n}\n\n@media (max-width: 480px) {\n  .r-component {\n    padding: 12px 8px !important;\n    border-radius: 8px !important;\n  }\n}"
+  },
+  {
+      "language": "tsx",
+      "code": "<R \n  titleKey=\"welcome.title\" \n  shadow \n  borderRadius={16}\n  darkMode={isDarkMode}\n>\n  内容区域\n</R>"
+  }
+]

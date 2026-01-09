@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { RouteObject, createBrowserRouter } from 'react-router-dom';
+import { RouteObject } from 'react-router-dom';
 
 const BasicLayout = lazy(() => import('@/layouts/BasicLayout'));
 const ChatPage = lazy(() => import('@/pages/chat'));

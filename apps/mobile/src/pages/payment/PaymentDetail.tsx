@@ -1,7 +1,8 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { Card, Button, Badge, List, NavBar } from 'antd-mobile';
+import { Card, Button, Badge, List, NavBar, Toast } from 'antd-mobile';
 import { useTranslation } from 'react-i18next';
 import { usePaymentStore } from '@/stores/paymentStore';
+import { launchFirework } from '@/utils/confetti';
 
 const PaymentDetail = () => {
   const { t } = useTranslation();
@@ -10,6 +11,26 @@ const PaymentDetail = () => {
   const { payments } = usePaymentStore();
 
   const payment = payments.find((p) => p.id === id);
+
+  const handleRetryPayment = async () => {
+    try {
+      // 模拟支付处理
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      // 支付成功，触发庆祝效果
+      await launchFirework(0.5, 0.5, ['#FFD700', '#FFA500', '#FF6347', '#FF4500']);
+
+      Toast.show({
+        content: '支付成功！',
+        icon: 'success',
+      });
+    } catch (error) {
+      Toast.show({
+        content: '支付失败，请重试',
+        icon: 'fail',
+      });
+    }
+  };
 
   if (!payment) {
     return (
@@ -75,7 +96,7 @@ const PaymentDetail = () => {
               {t('payment.backToList')}
             </Button>
             {payment.status === 'pending' && (
-              <Button block color="success">
+              <Button block color="success" onClick={handleRetryPayment}>
                 {t('payment.retryPayment')}
               </Button>
             )}

@@ -2,12 +2,32 @@ import * as React from 'react';
 import { ProgressIndicator } from '@versa-chat/ui';
 import { Button, Space } from 'antd-mobile';
 import { AddCircleOutline, MinusCircleOutline } from 'antd-mobile-icons';
+import { launchCustom } from '@/utils/confetti';
 
 const Demo: React.FC = () => {
   const [percent, setPercent] = React.useState(0);
 
+  const handleConfettiLaunch = async () => {
+    await launchCustom(
+      {
+        type: 'solid',
+        colors: ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8'],
+      },
+      undefined,
+      {
+        particleCount: 100,
+        spread: 90,
+        startVelocity: 50,
+      }
+    );
+  };
+
   return (
     <>
+      <Button color="primary" className="m-2" onClick={handleConfettiLaunch}>
+        🎉 点击我发射纸屑！
+      </Button>
+
       <Space>
         <Button
           color="primary"

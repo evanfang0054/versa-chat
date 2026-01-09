@@ -7,8 +7,6 @@ PubSub 是一个轻量且功能全面的发布-订阅管理器，支持同步/�
 在 monorepo 中直接引用：
 ```bash
 pnpm add @versa-chat/utils -S
-# 或者
-npm install @versa-chat/utils -S
 ```
 
 ## 引入
